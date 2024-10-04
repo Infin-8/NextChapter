@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Budget App</title>
+    <script type="module" src="./Store/state.mjs" defer></script>
+    <script type="module" src="./app.mjs" defer></script>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+
+  <body>
+    <div id="grid-main">
+      <div id="side-container" class="main-grid-unit">
+        <div class="side-unit">
+          <form class="input-containers">
+            <label for="budget"><strong>Budget:</strong></label>
+            <input
+              id="budget"
+              type="text"
+              placeholder="..."
+              required
+              onchange="updateBudget(event)"
+            />
+          </form>
+        </div>
+
+        <div class="side-unit">
+          <form class="input-containers" onsubmit="addExpense(event)">
+            <label id="bill"><strong>Bill:</strong></label>
+            <input type="text" id="bill" placeholder="..." required />
+            <label for="amount"><strong>Amount:</strong></label>
+            <input type="text" id="amount" placeholder="...." required />
+            <button>Add Bill</button>
+          </form>
+        </div>
+      </div>
+
+      <div id="main-container" class="main-grid-unit">
+        <div class="main-unit" id="display-container">
+
+          <div class="display-unit">
+            <p><strong>Balance:</strong> <span id="balance"></span></p>
+          </div>
+          <div class="display-unit">
+            <p><strong>Expenses:</strong> <span id="expenses"></span></p>
+          </div>
+
+        </div>
+
+        <div class="main-unit" id="display-expenses">
+          <div class="expense-card">
+            <p>Car Payment</p>
+            <p>$400</p>
+            <button>Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
