@@ -1,6 +1,7 @@
 * {
     box-sizing: border-box;
     background-color: whitesmoke;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #grid-main {
@@ -9,28 +10,21 @@
     gap: 1%;
     height: 98vh;
     width: 98vw;
-    /* border: 1px solid red; */
     justify-content: center;
-}
-
-.main-grid-unit {
-    /* border: 1px solid red; */
 }
 
 #side-container {
     display: grid;
     grid-template-rows: .25fr 1fr;
     gap: 1%;
-
 }
 
 .side-unit {
-    border: 2px outset black;
     border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0px 1px 7px black;
+    box-shadow: 1px 1px 6px black;
 }
 
 #main-container {
@@ -49,7 +43,6 @@
     justify-content: space-around;
     flex-direction: column;
     align-items: center;
-    /* border: 1px solid orange; */
     border-radius: 10px;
 }
 
@@ -59,34 +52,67 @@ input {
 
 #main-container {
     display: grid;
-    grid-template-rows: .2fr 1fr;
+    grid-template-rows: .26fr 1fr;
 }
 
 #display-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    border: 1px solid gray;
-    border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
     border-bottom: none;
 }
+
 .display-unit {
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
 }
 
 #display-expenses {
-    border: 5px inset whitesmoke;
+    border: 3px inset whitesmoke;
     padding: 5%;
     overflow: scroll;
     box-shadow: 0px 1px 7px black inset;
+    background-color: lightgrey;
+}
 
-    
+.dark-light-bg {
+    background-color: lightgrey;
+
+}
+
+.large-text {
+    font-size: large;
+    font-weight: bold;
+}
+
+.xl-text {
+    font-size: x-large;
 }
 
 .expense-card {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) .1fr;
     justify-content: space-around;
     margin: 1% 0 1% 0;
+    background-color: lightgrey;
+
 }
+
+.fa-trash-can {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: red
+}
+
+.fa-plus {
+    color: dodgerblue;
+    font-size: xx-large;
+}
+#add-expense-btn {
+    border: 1px solid dodgerblue;
+}
+

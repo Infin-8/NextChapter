@@ -1,6 +1,6 @@
 export default (function () {
 
-    let state = {
+    let _state = {
         budget: 0,
         expenses: 0,
         bills: [],
@@ -10,11 +10,11 @@ export default (function () {
         modal: false
     }
 
-    const getState = () => JSON.parse(JSON.stringify(state))
+    const getState = () => JSON.parse(JSON.stringify(_state))
     const setState = (update) => {
-        state = { ...state, ...update }
+        _state = { ..._state, ...update }
     }
-    const genID = () => Math.random() * 9876543
+    const genID = () => Math.floor(Date.now() * Math.random());
 
     return { getState, setState, genID }
 

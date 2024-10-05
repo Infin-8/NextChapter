@@ -6,58 +6,56 @@ const updateBudget = e => {
     setState({ budget: parseFloat(sanitize(e.target.value)) });
 }
 
+// this needs to be a function declaration due to hoisting issues
 function deleteExpense(e) {
-    const { bills, expenses, budget } = getState(),
+    const { bills: _bills, expenses: _expenses, budget: _budget } = getState(),
         [expenseID] = e.target.attributes,
         { value } = expenseID,
-        { amount } = bills.find(({ _id }) => _id == value),
-        removeExpense = bills.filter(({ _id }) => _id != value)
+        { amount } = _bills.find(({ _id }) => _id == value),
+        bills = _bills.filter(({ _id }) => _id != value)
 
-    let newBudget = parseFloat(budget) + amount,
-        newExpenses = expenses - amount
+    let budget = parseFloat(_budget) + amount,
+        expenses = Math.round(_expenses - amount)
 
     setState({
-        budget: newBudget,
-        expenses: newExpenses,
-        bills: removeExpense
+        budget,
+        expenses,
+        bills
     })
 
+    document.getElementById("expenses").innerText = usdFormatter(expenses)
+    document.getElementById("balance").innerText = usdFormatter(budget)
 
-    document.getElementById("expenses").innerText = usdFormatter(newExpenses)
-    document.getElementById("balance").innerText = usdFormatter(newBudget)
-
-    appendBills(removeExpense)
+    appendBills(bills)
 }
 
 const appendBills = (expenses = []) => {
 
-    console.log(getState())
-
-
     const expensesNode = document.getElementById("display-expenses"),
         previousCards = document.querySelectorAll(".expense-card")
-    previousCards.forEach(card => expensesNode.removeChild(card))
 
+    previousCards.forEach(card => expensesNode.removeChild(card))
     expenses.forEach(({ name, amount, _id }) => {
 
         const cardContainer = document.createElement("div"),
             title = document.createElement("p"),
             amountNode = document.createElement("p"),
-            deleteBTN = document.createElement("button");
+            deleteBTN = document.createElement("i");
 
         cardContainer.setAttribute("class", "expense-card");
+        title.setAttribute('class', "dark-light-bg large-text")
+        amountNode.setAttribute('class', "dark-light-bg large-text")
         title.innerText = titleCase(name);
         amountNode.innerText = usdFormatter(amount);
         deleteBTN.setAttribute("data-id", _id);
+        deleteBTN.setAttribute("class", "fa-solid fa-trash-can dark-light-bg large-text")
         deleteBTN.setAttribute("onclick", "deleteExpense(event)")
-        deleteBTN.innerText = "Delete";
 
         setTimeout(() => {
             [title, amountNode, deleteBTN]
                 .forEach(node => { cardContainer.appendChild(node) })
             expensesNode.appendChild(cardContainer)
         }, 100);
-
     })
 }
 
@@ -66,18 +64,18 @@ const addExpense = e => {
 
     const [budgetNode, billNode, amountNode] = document.querySelectorAll('input'),
         { budget, bills } = getState(),
-        billID = genID();
+        _id = genID();
 
     const expenses = [
         ...bills,
         {
             name: sanitize(billNode.value),
             amount: parseFloat(sanitize(amountNode.value)),
-            _id: billID
+            _id
         }
     ];
 
-    const newBudget = parseFloat(budget) - parseFloat(amountNode.value);
+    const newBudget = parseFloat(budget) - parseFloat(sanitize(amountNode.value));
 
     setState({
         budget: newBudget,
@@ -88,7 +86,6 @@ const addExpense = e => {
     const balanceNode = document.getElementById("balance"),
         expensesNode = document.getElementById("expenses");
 
-
     balanceNode.innerText = usdFormatter(newBudget);
     expensesNode.innerText = usdFormatter(compose(mapAmounts, getSum)(expenses));
     budgetNode.value = "";
@@ -96,9 +93,6 @@ const addExpense = e => {
     amountNode.value = "";
     appendBills(expenses);
 }
-
-
-
 
 
 

@@ -4,6 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Budget App</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM6MN2P9S/X9md1eOxg44J1HhZJlG4sFBO1w5rZ"
+      crossorigin="anonymous"
+    />
+    <script src="https://kit.fontawesome.com/0dd996abf5.js" crossorigin="anonymous"></script>
     <script type="module" src="./Store/state.mjs" defer></script>
     <script type="module" src="./Utilities/helpers.mjs" defer></script>
     <script type="module" src="./app.mjs" defer></script>
@@ -32,26 +39,24 @@
             <input type="text" id="bill" placeholder="..." required />
             <label for="amount"><strong>Amount:</strong></label>
             <input type="text" id="amount" placeholder="...." required />
-            <button>Add Bill</button>
+            <button id="add-expense-btn"><i class="fa-solid fa-plus"></i></button>
           </form>
         </div>
       </div>
 
       <div id="main-container" class="main-grid-unit">
         <div class="main-unit" id="display-container">
-
           <div class="display-unit">
-            <p><strong>Balance:</strong> <span id="balance"></span></p>
+            <p><strong class="xl-text">Balance:</strong></p>
+            <p id="balance"></p>
           </div>
           <div class="display-unit">
-            <p><strong>Expenses:</strong> <span id="expenses"></span></p>
+            <p><strong class="xl-text">Expenses:</strong></p>
+            <p id="expenses"></p>
           </div>
-
         </div>
 
-        <main class="main-unit" id="display-expenses">
-    
-        </main>
+        <main class="main-unit" id="display-expenses"></main>
       </div>
     </div>
   </body>
