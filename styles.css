@@ -15,12 +15,12 @@
 
 #side-container {
     display: grid;
-    grid-template-rows: .25fr 1fr;
-    gap: 1%;
+    grid-template-rows: .23fr 1fr;
+    gap: 2.5%;
 }
 
 .side-unit {
-    border-radius: 10px;
+    border-radius: 7px;
     display: flex;
     justify-content: center;
     align-items: center;
