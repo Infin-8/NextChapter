@@ -6,7 +6,6 @@ const updateBudget = e => {
     setState({ budget: parseFloat(sanitize(e.target.value)) });
 }
 
-// this needs to be a function declaration due to hoisting issues
 function deleteExpense(e) {
     const { bills: _bills, expenses: _expenses, budget: _budget } = getState(),
         [expenseID] = e.target.attributes,
@@ -61,8 +60,6 @@ const appendBills = (expenses = []) => {
 
 const addExpense = e => {
     e.preventDefault();
-
-    console.log('hello')
 
     const [budgetNode, billNode, amountNode] = document.querySelectorAll('input'),
         { budget, bills } = getState(),
