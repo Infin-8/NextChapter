@@ -62,6 +62,8 @@ const appendBills = (expenses = []) => {
 const addExpense = e => {
     e.preventDefault();
 
+    console.log('hello')
+
     const [budgetNode, billNode, amountNode] = document.querySelectorAll('input'),
         { budget, bills } = getState(),
         _id = genID();
