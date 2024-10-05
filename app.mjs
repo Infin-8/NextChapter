@@ -1,34 +1,57 @@
 import useStore from './Store/state.mjs'
 const { getState, setState, genID } = useStore
-import { compose, getSum, mapAmounts } from "./Utilities/helpers.mjs"
+import { compose, getSum, mapAmounts, usdFormatter, titleCase, sanitize } from "./Utilities/helpers.mjs"
 
-const updateBudget = (e) => {
-    setState({ budget: parseFloat(e.target.value) });
+const updateBudget = e => {
+    setState({ budget: parseFloat(sanitize(e.target.value)) });
+}
+
+function deleteExpense(e) {
+    const { bills, expenses, budget } = getState(),
+        [expenseID] = e.target.attributes,
+        { value } = expenseID,
+        { amount } = bills.find(({ _id }) => _id == value),
+        removeExpense = bills.filter(({ _id }) => _id != value)
+
+    let newBudget = parseFloat(budget) + amount,
+        newExpenses = expenses - amount
+
+    setState({
+        budget: newBudget,
+        expenses: newExpenses,
+        bills: removeExpense
+    })
+
+
+    document.getElementById("expenses").innerText = usdFormatter(newExpenses)
+    document.getElementById("balance").innerText = usdFormatter(newBudget)
+
+    appendBills(removeExpense)
 }
 
 const appendBills = (expenses = []) => {
-    console.log('expenses', expenses)
+
     console.log(getState())
 
-    let expensesNode = document.getElementById("display-expenses");
+
+    const expensesNode = document.getElementById("display-expenses"),
+        previousCards = document.querySelectorAll(".expense-card")
+    previousCards.forEach(card => expensesNode.removeChild(card))
 
     expenses.forEach(({ name, amount, _id }) => {
 
-        let cardContainer = document.createElement("div"),
+        const cardContainer = document.createElement("div"),
             title = document.createElement("p"),
             amountNode = document.createElement("p"),
             deleteBTN = document.createElement("button");
 
         cardContainer.setAttribute("class", "expense-card");
-        title.innerText = name;
-        amountNode.innerText = amount;
+        title.innerText = titleCase(name);
+        amountNode.innerText = usdFormatter(amount);
         deleteBTN.setAttribute("data-id", _id);
+        deleteBTN.setAttribute("onclick", "deleteExpense(event)")
         deleteBTN.innerText = "Delete";
 
-        let previousCards = document.querySelectorAll(".expense-card")
-        if (previousCards.length) {
-            previousCards.forEach(card => expensesNode.removeChild(card))
-        }
         setTimeout(() => {
             [title, amountNode, deleteBTN]
                 .forEach(node => { cardContainer.appendChild(node) })
@@ -38,36 +61,36 @@ const appendBills = (expenses = []) => {
     })
 }
 
-const addExpense = (e) => {
+const addExpense = e => {
     e.preventDefault();
 
-    const [budgetNode, billNode, amountNode] = document.querySelectorAll('input');
-    const { budget, bills } = getState();
-    const billID = genID();
+    const [budgetNode, billNode, amountNode] = document.querySelectorAll('input'),
+        { budget, bills } = getState(),
+        billID = genID();
 
-    let expenses = [
+    const expenses = [
         ...bills,
         {
-            name: billNode.value,
-            amount: parseFloat(amountNode.value),
+            name: sanitize(billNode.value),
+            amount: parseFloat(sanitize(amountNode.value)),
             _id: billID
         }
     ];
 
-    let newBudget = parseFloat(budget) - parseFloat(compose(mapAmounts, getSum)(expenses));
+    const newBudget = parseFloat(budget) - parseFloat(amountNode.value);
 
     setState({
-        expenses: compose(mapAmounts, getSum)(expenses),
         budget: newBudget,
+        expenses: compose(mapAmounts, getSum)(expenses),
         bills: expenses
     });
 
-    let balanceNode = document.getElementById("balance"),
+    const balanceNode = document.getElementById("balance"),
         expensesNode = document.getElementById("expenses");
 
-    balanceNode.innerText = newBudget;
-    expensesNode.innerText = compose(mapAmounts, getSum)(expenses);
-    // budgetNode.value = newBudget;
+
+    balanceNode.innerText = usdFormatter(newBudget);
+    expensesNode.innerText = usdFormatter(compose(mapAmounts, getSum)(expenses));
     budgetNode.value = "";
     billNode.value = "";
     amountNode.value = "";
@@ -77,6 +100,9 @@ const addExpense = (e) => {
 
 
 
+
+
 window.addExpense = addExpense;
+window.deleteExpense = deleteExpense
 window.updateBudget = updateBudget;
 window.appendBill = appendBills;
