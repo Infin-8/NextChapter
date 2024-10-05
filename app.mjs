@@ -1,54 +1,77 @@
 import useStore from './Store/state.mjs'
 const { getState, setState, genID } = useStore
+import { compose, getSum, mapAmounts } from "./Utilities/helpers.mjs"
 
 const updateBudget = (e) => {
     setState({ budget: parseFloat(e.target.value) });
 }
 
-const appendBill = () => {
-console.log('state', getState())
+const appendBills = (expenses = []) => {
+    console.log('expenses', expenses)
+    console.log(getState())
+
+    let expensesNode = document.getElementById("display-expenses");
+
+    expenses.forEach(({ name, amount, _id }) => {
+
+        let cardContainer = document.createElement("div"),
+            title = document.createElement("p"),
+            amountNode = document.createElement("p"),
+            deleteBTN = document.createElement("button");
+
+        cardContainer.setAttribute("class", "expense-card");
+        title.innerText = name;
+        amountNode.innerText = amount;
+        deleteBTN.setAttribute("data-id", _id);
+        deleteBTN.innerText = "Delete";
+
+        let previousCards = document.querySelectorAll(".expense-card")
+        if (previousCards.length) {
+            previousCards.forEach(card => expensesNode.removeChild(card))
+        }
+        setTimeout(() => {
+            [title, amountNode, deleteBTN]
+                .forEach(node => { cardContainer.appendChild(node) })
+            expensesNode.appendChild(cardContainer)
+        }, 100);
+
+    })
 }
 
 const addExpense = (e) => {
     e.preventDefault();
+
     const [budgetNode, billNode, amountNode] = document.querySelectorAll('input');
     const { budget, bills } = getState();
+    const billID = genID();
 
     let expenses = [
         ...bills,
         {
             name: billNode.value,
             amount: parseFloat(amountNode.value),
-            _id: genID()
+            _id: billID
         }
-    ]
-        .map(({ amount }) => amount)
-        .reduce((a, b) => a + b, 0);
+    ];
 
-
-    let newBudget = parseFloat(budget) - parseFloat(expenses);
+    let newBudget = parseFloat(budget) - parseFloat(compose(mapAmounts, getSum)(expenses));
 
     setState({
-        expenses,
+        expenses: compose(mapAmounts, getSum)(expenses),
         budget: newBudget,
-        bills: [
-            ...bills,
-            {
-                name: billNode.value,
-                amount: parseFloat(amountNode.value),
-                _id: genID()
-            }
-        ],
+        bills: expenses
     });
 
-    let balanceNode = document.getElementById("balance")
-    let expensesNode = document.getElementById("expenses")
-    balanceNode.innerText = newBudget
-    expensesNode.innerText = expenses
-    budgetNode.value = newBudget;
-    billNode.value = ""
-    amountNode.value = ""
-    appendBill()
+    let balanceNode = document.getElementById("balance"),
+        expensesNode = document.getElementById("expenses");
+
+    balanceNode.innerText = newBudget;
+    expensesNode.innerText = compose(mapAmounts, getSum)(expenses);
+    // budgetNode.value = newBudget;
+    budgetNode.value = "";
+    billNode.value = "";
+    amountNode.value = "";
+    appendBills(expenses);
 }
 
 
@@ -56,4 +79,4 @@ const addExpense = (e) => {
 
 window.addExpense = addExpense;
 window.updateBudget = updateBudget;
-window.appendBill = appendBill;
+window.appendBill = appendBills;
