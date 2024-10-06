@@ -3,6 +3,14 @@
     margin: 3% 3% 3% 1% !important;
   }
 
+  #expenses {
+    font-size: x-large !important;
+  }
+
+  #balance {
+    font-size: x-large !important;
+  }
+
   #grid-main {
     display: grid !important;
     grid-template-columns: 1fr !important;
@@ -28,6 +36,14 @@
   * {
     margin: 3% 3% 3% 1% !important;
   }
+
+  #expenses {
+    font-size: x-large !important;
+  }
+
+  #balance {
+    font-size: x-large !important;
+  }
   #grid-main {
     display: grid !important;
     grid-template-columns: 1fr !important;
@@ -52,6 +68,14 @@
 @media only screen and (max-width: 768px) {
   * {
     margin: 3% 3% 3% 1% !important;
+  }
+
+  #expenses {
+    font-size: x-large !important;
+  }
+
+  #balance {
+    font-size: x-large !important;
   }
   #grid-main {
     display: grid !important;
@@ -79,6 +103,14 @@
   * {
     margin: 3% 3% 3% 1% !important;
   }
+
+  #expenses {
+    font-size: x-large !important;
+  }
+
+  #balance {
+    font-size: x-large !important;
+  }
   #grid-main {
     display: grid !important;
     grid-template-columns: 1fr !important;
@@ -105,6 +137,14 @@
   * {
     margin: 3% 3% 3% 1% !important;
   }
+
+  #expenses {
+    font-size: x-large !important;
+  }
+
+  #balance {
+    font-size: x-large !important;
+  }
   #grid-main {
     display: grid !important;
     grid-template-columns: 1fr !important;
@@ -130,6 +170,14 @@
 @media only screen and (min-width: 2796px) and (orientation: landscape) {
   * {
     margin: 3% 3% 3% 1% !important;
+  }
+
+  #expenses {
+    font-size: x-large !important;
+  }
+
+  #balance {
+    font-size: x-large !important;
   }
   #grid-main {
     display: grid !important;
