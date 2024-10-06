@@ -111,9 +111,16 @@ input {
 }
 
 .fa-plus {
-  color: dodgerblue;
+  color: white;
   font-size: xx-large;
+  background-color: dodgerblue;
+  
 }
 #add-expense-btn {
   border: 1px solid dodgerblue;
+  border-radius: 45% !important;
+  height: 55px;
+  width: 55px;
+  background-color: dodgerblue;
+  box-shadow: 0px 2px 4px black;
 }
