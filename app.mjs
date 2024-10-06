@@ -22,11 +22,10 @@ function deleteExpense(e) {
         bills
     })
 
-    let expenseNode = document.getElementsByClassName("expenses")
-    expenseNode.innerText = usdFormatter(expenses)
-    expenseNode.style.color = budget > 0 ? "limegreen" : "red"
+    let balanceNode = document.getElementById("balance")
+    balanceNode.innerText = usdFormatter(budget)
+    balanceNode.style.color = budget > 0 ? "limegreen" : "red"
     document.getElementById("expenses").innerText = usdFormatter(expenses)
-    document.getElementById("balance").innerText = usdFormatter(budget)
 
     appendBills(bills)
 }
@@ -35,8 +34,6 @@ const appendBills = (expenses = []) => {
 
     const expensesNode = document.getElementById("display-expenses"),
         previousCards = document.querySelectorAll(".expense-card")
-
-    console.log(expensesNode)
 
     previousCards.forEach(card => expensesNode.removeChild(card))
     expenses.forEach(({ name, amount, _id }) => {
