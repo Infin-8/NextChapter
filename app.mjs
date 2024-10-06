@@ -93,6 +93,7 @@ const addExpense = e => {
     balanceNode.innerText = usdFormatter(newBudget);
     balanceNode.style.color = newBudget > 0 ? "limegreen" : "red"
     expensesNode.innerText = usdFormatter(compose(mapAmounts, getSum)(expenses));
+    expensesNode.style.color = "white"
     budgetNode.value = "";
     billNode.value = "";
     amountNode.value = "";
