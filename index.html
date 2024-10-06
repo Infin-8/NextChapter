@@ -26,7 +26,7 @@
       <div id="side-container" class="main-grid-unit">
         <div class="side-unit">
           <form class="input-containers">
-            <label for="budget"><strong>Budget:</strong></label>
+            <label for="budget"><strong>Budget</strong></label>
             <input
               id="budget"
               type="text"
@@ -39,10 +39,10 @@
 
         <div class="side-unit">
           <form class="input-containers" onsubmit="addExpense(event)">
-            <label id="bill"><strong>Bill:</strong></label>
+            <label id="bill"><strong>Bill</strong></label>
             <input type="text" id="bill" placeholder="..." required />
-            <label for="amount"><strong>Amount:</strong></label>
-            <input type="text" id="amount" placeholder="...." required />
+            <label for="amount"><strong>Amount</strong></label>
+            <input type="number" id="amount" placeholder="...." required />
             <button id="add-expense-btn">
               <i class="fa-solid fa-plus"></i>
             </button>
@@ -53,11 +53,11 @@
       <div id="main-container" class="main-grid-unit">
         <div class="main-unit" id="display-container">
           <div class="display-unit">
-            <p><strong class="xl-text">Balance:</strong></p>
+            <p><strong class="xl-text">Balance</strong></p>
             <p id="balance"></p>
           </div>
           <div class="display-unit">
-            <p><strong class="xl-text">Expenses:</strong></p>
+            <p><strong class="xl-text">Expenses</strong></p>
             <p id="expenses"></p>
           </div>
         </div>
