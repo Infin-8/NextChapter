@@ -22,6 +22,9 @@ function deleteExpense(e) {
         bills
     })
 
+    let expenseNode = document.getElementsByClassName("expenses")
+    expenseNode.innerText = usdFormatter(expenses)
+    expenseNode.style.color = budget > 0 ? "limegreen" : "red"
     document.getElementById("expenses").innerText = usdFormatter(expenses)
     document.getElementById("balance").innerText = usdFormatter(budget)
 
@@ -32,6 +35,8 @@ const appendBills = (expenses = []) => {
 
     const expensesNode = document.getElementById("display-expenses"),
         previousCards = document.querySelectorAll(".expense-card")
+
+    console.log(expensesNode)
 
     previousCards.forEach(card => expensesNode.removeChild(card))
     expenses.forEach(({ name, amount, _id }) => {
@@ -86,6 +91,7 @@ const addExpense = e => {
         expensesNode = document.getElementById("expenses");
 
     balanceNode.innerText = usdFormatter(newBudget);
+    balanceNode.style.color = newBudget > 0 ? "limegreen" : "red"
     expensesNode.innerText = usdFormatter(compose(mapAmounts, getSum)(expenses));
     budgetNode.value = "";
     billNode.value = "";
