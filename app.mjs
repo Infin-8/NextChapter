@@ -100,7 +100,7 @@ document.getElementById('budget').addEventListener('blur', e => {
 
     const { bills } = getState(),
         balanceNode = document.getElementById('balance'),
-        budget = parseFloat(sanitize(e.target.value)) - parseFloat(compose(mapAmounts, getSum)(bills))
+        budget = parseFloat(sanitize(e.target.value)) - compose(mapAmounts, getSum, parseFloat)(bills)
 
     setState({ budget });
     balanceNode.innerText = usdFormatter(budget);
@@ -121,16 +121,18 @@ window.onload = function () {
     }
 
     if (bills) {
-        const expensesNode = document.getElementById("expenses");
-        expensesNode.innerText = usdFormatter(String(compose(mapAmounts, getSum)(Array.from(JSON.parse(bills)))));
+        const expensesNode = document.getElementById("expenses"),
+            parsed = Array.from(JSON.parse(bills))
+
+        expensesNode.innerText = usdFormatter(compose(mapAmounts, getSum, String)(parsed));
         expensesNode.style.color = "white"
         setState({
-            bills: JSON.parse(bills),
-            expenses: compose(mapAmounts, getSum)(Array.from(JSON.parse(bills)))
+            bills: parsed,
+            expenses: compose(mapAmounts, getSum)(parsed)
         })
-        appendBills(JSON.parse(bills))
+        appendBills(parsed)
     }
 };
 window.addExpense = addExpense;
 window.deleteExpense = deleteExpense
-window.appendBill = appendBills;
+window.appendBills = appendBills;

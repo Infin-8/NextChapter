@@ -8,11 +8,12 @@
   }
 
   #display-expenses {
-    margin-top: 2% !important;
+    padding-top: 30% !important;
     display: flex;
     justify-content: space-around;
     flex-direction: column;
-    height: 20vh !important;
+    height: 24vh !important;
+    width: 91vw !important;
     font-size: medium !important;
     gap: 25% !important;
   }
@@ -56,11 +57,12 @@
   }
 
   #display-expenses {
-    margin-top: 2% !important;
+    padding-top: 30% !important;
     display: flex;
     justify-content: space-around;
     flex-direction: column;
-    height: 20vh !important;
+    height: 24vh !important;
+    width: 91vw !important;
     font-size: medium !important;
     gap: 25% !important;
   }
@@ -103,11 +105,12 @@
   }
 
   #display-expenses {
-    margin-top: 2% !important;
+    padding-top: 30% !important;
     display: flex;
     justify-content: space-around;
     flex-direction: column;
-    height: 20vh !important;
+    height: 24vh !important;
+    width: 91vw !important;
     font-size: medium !important;
     gap: 25% !important;
   }
@@ -151,11 +154,12 @@
   }
 
   #display-expenses {
-    margin-top: 2% !important;
+    padding-top: 30% !important;
     display: flex;
     justify-content: space-around;
     flex-direction: column;
-    height: 20vh !important;
+    height: 24vh !important;
+    width: 91vw !important;
     font-size: medium !important;
     gap: 25% !important;
   }
@@ -199,11 +203,12 @@
   }
 
   #display-expenses {
-    margin-top: 2% !important;
+    padding-top: 30% !important;
     display: flex;
     justify-content: space-around;
     flex-direction: column;
-    height: 20vh !important;
+    height: 24vh !important;
+    width: 91vw !important;
     font-size: medium !important;
     gap: 25% !important;
   }
@@ -247,11 +252,12 @@
   }
 
   #display-expenses {
-    margin-top: 2% !important;
+    padding-top: 30% !important;
     display: flex;
     justify-content: space-around;
     flex-direction: column;
-    height: 20vh !important;
+    height: 24vh !important;
+    width: 91vw !important;
     font-size: medium !important;
     gap: 25% !important;
   }
