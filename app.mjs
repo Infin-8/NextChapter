@@ -105,7 +105,7 @@ document.getElementById('budget').addEventListener('blur', e => {
     setState({ budget });
     balanceNode.innerText = usdFormatter(budget);
     balanceNode.style.color = budget > 0 ? "limegreen" : "red"
-    localStorage.setItem("budget", compose(sanitizeTrolls, sanitize)(e.target.value));
+    localStorage.setItem("budget", budget);
 
 })
 
