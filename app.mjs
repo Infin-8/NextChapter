@@ -100,12 +100,12 @@ document.getElementById('budget').addEventListener('blur', e => {
 
     const { bills } = getState(),
         balanceNode = document.getElementById('balance'),
-        budget = parseFloat(sanitize(e.target.value)) - compose(mapAmounts, getSum, parseFloat)(bills)
+        budget = parseFloat(compose(sanitizeTrolls, sanitize)(e.target.value)) - compose(mapAmounts, getSum, parseFloat)(bills)
 
     setState({ budget });
     balanceNode.innerText = usdFormatter(budget);
     balanceNode.style.color = budget > 0 ? "limegreen" : "red"
-    localStorage.setItem("budget", sanitize(e.target.value));
+    localStorage.setItem("budget", compose(sanitizeTrolls, sanitize)(e.target.value));
 
 })
 
