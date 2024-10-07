@@ -73,6 +73,12 @@ input {
 }
 
 #display-expenses {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 100%;
+  gap: 5%;
+  height: 98%;
   border: 3px inset whitesmoke;
   padding: 5%;
   overflow: scroll;
@@ -115,7 +121,6 @@ input {
   color: white;
   font-size: xx-large;
   background-color: dodgerblue;
-  
 }
 #add-expense-btn {
   border: 1px solid dodgerblue;
