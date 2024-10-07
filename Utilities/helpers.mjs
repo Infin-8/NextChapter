@@ -18,8 +18,13 @@ export const titleCase = str => str
     .replace(/^\w|\s\w/g, l => l.toUpperCase())
 
 export const sanitize = input => input
+    .replace(/&/g, '&amp;')    
+    .replace(/</g, '&lt;')     
+    .replace(/>/g, '&gt;')     
+    .replace(/"/g, '&quot;')  
+    .replace(/'/g, '&#39;')  
     .replace(/[^a-zA-Z0-9 .,!?@#%&()-_]/g, '')
-    .trim();
+    .trim();            
 
 export const sanitizeTrolls = input => input.slice(0, 8)
 
