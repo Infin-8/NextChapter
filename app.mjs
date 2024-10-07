@@ -2,11 +2,8 @@ import useStore from './Store/state.mjs'
 const { getState, setState, genID } = useStore
 import { compose, getSum, mapAmounts, usdFormatter, titleCase, sanitize } from "./Utilities/helpers.mjs"
 
-const updateBudget = e => {
-    setState({ budget: parseFloat(sanitize(e.target.value)) });
-}
-
 function deleteExpense(e) {
+    e.preventDefault()
     const { bills: _bills, expenses: _expenses, budget: _budget } = getState(),
         [expenseID] = e.target.attributes,
         { value } = expenseID,
@@ -26,7 +23,8 @@ function deleteExpense(e) {
     balanceNode.innerText = usdFormatter(budget)
     balanceNode.style.color = budget > 0 ? "limegreen" : "red"
     document.getElementById("expenses").innerText = usdFormatter(expenses)
-
+    localStorage.setItem('bills', JSON.stringify(bills))
+    localStorage.setItem("budget", budget)
     appendBills(bills)
 }
 
@@ -77,7 +75,8 @@ const addExpense = e => {
     ];
 
     const newBudget = parseFloat(budget) - parseFloat(sanitize(amountNode.value));
-
+    localStorage.setItem('budget', newBudget.toString())
+    localStorage.setItem('bills', JSON.stringify(expenses))
     setState({
         budget: newBudget,
         expenses: compose(mapAmounts, getSum)(expenses),
@@ -97,9 +96,34 @@ const addExpense = e => {
     appendBills(expenses);
 }
 
+document.getElementById('budget').addEventListener('blur', (e) => {
+    setState({ budget: parseFloat(sanitize(e.target.value)) });
+    localStorage.setItem("budget", sanitize(e.target.value));
 
+})
 
+window.onload = function () {
+    const budget = localStorage.getItem('budget'),
+        bills = localStorage.getItem('bills')
+
+    if (budget) {
+        const balanceNode = document.getElementById("balance")
+        balanceNode.innerText = usdFormatter(budget)
+        balanceNode.style.color = budget > 0 ? "limegreen" : "red"
+        setState({ budget })
+    }
+
+    if (bills) {
+        const expensesNode = document.getElementById("expenses");
+        expensesNode.innerText = usdFormatter(String(compose(mapAmounts, getSum)(Array.from(JSON.parse(bills)))));
+        expensesNode.style.color = "white"
+        setState({
+            bills: JSON.parse(bills),
+            expenses: compose(mapAmounts, getSum)(Array.from(JSON.parse(bills)))
+        })
+        appendBills(JSON.parse(bills))
+    }
+};
 window.addExpense = addExpense;
 window.deleteExpense = deleteExpense
-window.updateBudget = updateBudget;
 window.appendBill = appendBills;

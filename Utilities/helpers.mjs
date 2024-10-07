@@ -20,3 +20,5 @@ export const titleCase = str => str
 export const sanitize = input => input
     .replace(/[^a-zA-Z0-9 .,!?@#%&()-_]/g, '')
     .trim();
+
+
