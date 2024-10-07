@@ -21,4 +21,6 @@ export const sanitize = input => input
     .replace(/[^a-zA-Z0-9 .,!?@#%&()-_]/g, '')
     .trim();
 
+export const sanitizeTrolls = input => input.slice(0, 8)
+
 

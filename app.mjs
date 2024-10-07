@@ -1,6 +1,6 @@
 import useStore from './Store/state.mjs'
 const { getState, setState, genID } = useStore
-import { compose, getSum, mapAmounts, usdFormatter, titleCase, sanitize } from "./Utilities/helpers.mjs"
+import { compose, getSum, mapAmounts, usdFormatter, titleCase, sanitize, sanitizeTrolls } from "./Utilities/helpers.mjs"
 
 const deleteExpense = e => {
     e.preventDefault()
@@ -69,12 +69,12 @@ const addExpense = e => {
         ...bills,
         {
             name: sanitize(billNode.value),
-            amount: parseFloat(sanitize(amountNode.value)),
+            amount: parseFloat(compose(sanitizeTrolls, sanitize)(amountNode.value)),
             _id
         }
     ];
 
-    const newBudget = parseFloat(budget) - parseFloat(sanitize(amountNode.value));
+    const newBudget = parseFloat(budget) - parseFloat(compose(sanitizeTrolls, sanitize)(amountNode.value));
     localStorage.setItem('budget', newBudget.toString())
     localStorage.setItem('bills', JSON.stringify(expenses))
     setState({
