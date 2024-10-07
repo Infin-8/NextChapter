@@ -22,7 +22,7 @@ function deleteExpense(e) {
         bills
     })
 
-    let balanceNode = document.getElementById("balance")
+    const balanceNode = document.getElementById("balance")
     balanceNode.innerText = usdFormatter(budget)
     balanceNode.style.color = budget > 0 ? "limegreen" : "red"
     document.getElementById("expenses").innerText = usdFormatter(expenses)

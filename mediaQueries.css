@@ -3,6 +3,14 @@
     margin: 3% 3% 3% 1% !important;
   }
 
+  .large-text {
+    font-size: medium !important;
+  }
+
+  #display-expenses {
+    height: 20vh !important;
+  }
+
   #expenses {
     font-size: x-large !important;
   }
@@ -28,13 +36,21 @@
   }
 
   .fa-trash-can {
-    font-size: xx-large !important;
+    font-size: x-large !important;
   }
 }
 
 @media only screen and (max-width: 480px) {
   * {
-    margin: 3% 3% 3% 1% !important;
+    margin: 1% 3% 3% 1% !important;
+  }
+
+  .large-text {
+    font-size: medium !important;
+  }
+
+  #display-expenses {
+    height: 20vh !important;
   }
 
   #expenses {
@@ -61,13 +77,21 @@
   }
 
   .fa-trash-can {
-    font-size: xx-large !important;
+    font-size: x-large !important;
   }
 }
 
 @media only screen and (max-width: 768px) {
   * {
-    margin: 3% 3% 3% 1% !important;
+    margin: 1% 3% 3% 1% !important;
+  }
+
+  .large-text {
+    font-size: medium !important;
+  }
+
+  #display-expenses {
+    height: 20vh !important;
   }
 
   #expenses {
@@ -95,13 +119,21 @@
   }
 
   .fa-trash-can {
-    font-size: xx-large !important;
+    font-size: x-large !important;
   }
 }
 
 @media only screen and (max-width: 1024px) {
   * {
-    margin: 3% 3% 3% 1% !important;
+    margin: 1% 3% 3% 1% !important;
+  }
+
+  .large-text {
+    font-size: medium !important;
+  }
+
+  #display-expenses {
+    height: 20vh !important;
   }
 
   #expenses {
@@ -129,13 +161,21 @@
   }
 
   .fa-trash-can {
-    font-size: xx-large !important;
+    font-size: x-large !important;
   }
 }
 
 @media only screen and (max-width: 1290px) {
   * {
-    margin: 3% 3% 3% 1% !important;
+    margin: 1% 3% 3% 1% !important;
+  }
+
+  .large-text {
+    font-size: medium !important;
+  }
+
+  #display-expenses {
+    height: 20vh !important;
   }
 
   #expenses {
@@ -163,13 +203,21 @@
   }
 
   .fa-trash-can {
-    font-size: xx-large !important;
+    font-size: x-large !important;
   }
 }
 
 @media only screen and (min-width: 2796px) and (orientation: landscape) {
   * {
-    margin: 3% 3% 3% 1% !important;
+    margin: 1% 3% 3% 1% !important;
+  }
+
+  .large-text {
+    font-size: medium !important;
+  }
+
+  #display-expenses {
+    height: 20vh !important;
   }
 
   #expenses {
@@ -197,6 +245,6 @@
   }
 
   .fa-trash-can {
-    font-size: xx-large !important;
+    font-size: x-large !important;
   }
 }
