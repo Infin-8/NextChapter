@@ -8,6 +8,7 @@
   }
 
   #display-expenses {
+    padding-top: 2% !important;
     display: flex;
     justify-content: space-around;
     flex-direction: column;
@@ -55,6 +56,7 @@
   }
 
   #display-expenses {
+    padding-top: 2% !important;
     display: flex;
     justify-content: space-around;
     flex-direction: column;
@@ -101,6 +103,7 @@
   }
 
   #display-expenses {
+    padding-top: 2% !important;
     display: flex;
     justify-content: space-around;
     flex-direction: column;
@@ -148,6 +151,7 @@
   }
 
   #display-expenses {
+    padding-top: 2% !important;
     display: flex;
     justify-content: space-around;
     flex-direction: column;
@@ -195,6 +199,7 @@
   }
 
   #display-expenses {
+    padding-top: 2% !important;
     display: flex;
     justify-content: space-around;
     flex-direction: column;
@@ -242,6 +247,7 @@
   }
 
   #display-expenses {
+    padding-top: 2% !important;
     display: flex;
     justify-content: space-around;
     flex-direction: column;

@@ -2,7 +2,7 @@ import useStore from './Store/state.mjs'
 const { getState, setState, genID } = useStore
 import { compose, getSum, mapAmounts, usdFormatter, titleCase, sanitize } from "./Utilities/helpers.mjs"
 
-function deleteExpense(e) {
+const deleteExpense = e => {
     e.preventDefault()
     const { bills: _bills, expenses: _expenses, budget: _budget } = getState(),
         [expenseID] = e.target.attributes,
@@ -96,7 +96,7 @@ const addExpense = e => {
     appendBills(expenses);
 }
 
-document.getElementById('budget').addEventListener('blur', (e) => {
+document.getElementById('budget').addEventListener('blur', e => {
 
     const { bills } = getState(),
         balanceNode = document.getElementById('balance'),

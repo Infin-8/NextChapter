@@ -73,9 +73,6 @@ input {
 }
 
 #display-expenses {
-  /* display: flex;
-  justify-content: space-around;
-  flex-direction: column; */
   width: 100%;
   gap: 5%;
   height: 98%;
