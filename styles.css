@@ -11,7 +11,7 @@
 }
 
 .black-text {
-  color: black !important;
+  color: #000000 !important;
 }
 #grid-main {
   display: grid;
