@@ -96,7 +96,7 @@ const addExpense = e => {
     appendBills(expenses);
 };
 
-document.getElementById('budget').addEventListener('blur', e => {
+document.getElementById('budget').addEventListener('input', e => {
 
     const { bills } = getState(),
         balanceNode = document.getElementById('balance'),
