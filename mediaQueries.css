@@ -45,6 +45,10 @@
   .fa-trash-can {
     font-size: x-large !important;
   }
+
+  .fa-plus {
+    font-size: small !important;
+  }
 }
 
 @media only screen and (max-width: 480px) {
@@ -92,6 +96,10 @@
 
   .fa-trash-can {
     font-size: x-large !important;
+  }
+
+  .fa-plus {
+    font-size: small !important;
   }
 }
 
@@ -142,6 +150,10 @@
   .fa-trash-can {
     font-size: x-large !important;
   }
+
+  .fa-plus {
+    font-size: small !important;
+  }
 }
 
 @media only screen and (max-width: 1024px) {
@@ -190,6 +202,10 @@
 
   .fa-trash-can {
     font-size: x-large !important;
+  }
+
+  .fa-plus {
+    font-size: small !important;
   }
 }
 
@@ -240,6 +256,10 @@
   .fa-trash-can {
     font-size: x-large !important;
   }
+
+  .fa-plus {
+    font-size: small !important;
+  }
 }
 
 @media only screen and (min-width: 2796px) and (orientation: landscape) {
@@ -288,5 +308,9 @@
 
   .fa-trash-can {
     font-size: x-large !important;
+  }
+
+  .fa-plus {
+    font-size: small !important;
   }
 }
