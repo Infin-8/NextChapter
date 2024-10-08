@@ -123,14 +123,14 @@ input {
 }
 
 .fa-plus {
-  color: white;
+  color: white !important;
   font-size: xx-large;
   background-color: #32cd32;
   width: 75%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
   -webkit-box-shadow: 0px 2px 4px black; 
   -moz-box-shadow: 0px 2px 4px black;    
   box-shadow: 0px 2px 4px black;         
