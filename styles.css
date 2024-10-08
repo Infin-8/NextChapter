@@ -134,6 +134,7 @@ input {
   box-shadow: 0px 2px 4px black;       
   width: 90%;             
   border-radius: 5px;  
+  transition: all 0.3s ease; /* Smooth transition for width, height, and border-radius */
 }
 
 #add-expense-btn {

@@ -1,9 +1,6 @@
-@media only screen and (max-width: 320px) {
-  .fa-plus {
-    width: 20% !important;
-    border-radius: 45% !important;
-  }
 
+
+@media only screen and (max-width: 320px) {
   * {
     margin: 3% 3% 3% 1% !important;
   }
@@ -23,7 +20,11 @@
     gap: 2% !important;
   }
 
-  #expenses, #balance {
+  #expenses {
+    font-size: x-large !important;
+  }
+
+  #balance {
     font-size: x-large !important;
   }
 
@@ -46,14 +47,16 @@
   .fa-trash-can {
     font-size: x-large !important;
   }
+
+  .fa-plus {
+    width: 40px !important; 
+    height: 40px !important; 
+    border-radius: 50% !important; 
+    font-size: medium !important; 
+  }
 }
 
-@media only screen and (min-width: 321px) and (max-width: 768px) {
-  .fa-plus {
-    width: 20% !important;
-    border-radius: 45% !important;
-  }
-
+@media only screen and (max-width: 480px) {
   * {
     margin: 1% 3% 3% 1% !important;
   }
@@ -73,7 +76,11 @@
     gap: 2% !important;
   }
 
-  #expenses, #balance {
+  #expenses {
+    font-size: x-large !important;
+  }
+
+  #balance {
     font-size: x-large !important;
   }
 
@@ -96,12 +103,40 @@
   .fa-trash-can {
     font-size: x-large !important;
   }
+
+  .fa-plus {
+    width: 50px !important; 
+    border-radius: 50% !important; 
+    font-size: medium !important;
+  }
 }
 
-@media only screen and (min-width: 769px) and (max-width: 1024px) {
-  .fa-plus {
-    width: 70% !important;
-    border-radius: 10px !important;
+@media only screen and (max-width: 768px) {
+  * {
+    margin: 1% 3% 3% 1% !important;
+  }
+
+  .large-text {
+    font-size: medium !important;
+  }
+
+  #display-expenses {
+    padding-top: 3% !important;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    height: 24vh !important;
+    width: 91vw !important;
+    font-size: medium !important;
+    gap: 2% !important;
+  }
+
+  #expenses {
+    font-size: x-large !important;
+  }
+
+  #balance {
+    font-size: x-large !important;
   }
 
   #grid-main {
@@ -111,43 +146,156 @@
     width: 98vw !important;
     justify-content: center;
   }
-}
 
-@media only screen and (min-width: 1025px) {
-  .fa-plus {
-    width: 90% !important;   
-    border-radius: 5px !important;  
-  }
-
-  #grid-main {
-    display: grid !important;
-    grid-template-columns: 0.5fr 1fr !important;  
-    height: 98vh;
-    width: 98vw !important;
+  #add-expense-btn {
+    display: flex;
     justify-content: center;
-  }
-
-  #display-expenses {
-    height: auto;
+    align-items: center;
+    height: 100% !important;
+    width: 100% !important;
   }
 
   .fa-trash-can {
-    font-size: xx-large !important;
+    font-size: x-large !important;
+  }
+
+  .fa-plus {
+    width: 60px !important; 
+    height: 60px !important; 
+    border-radius: 50% !important; 
+    font-size: small !important; 
   }
 }
 
-@media only screen and (orientation: landscape) and (max-width: 1024px) {
-  .fa-plus {
-    width: 20% !important;
-    border-radius: 45% !important;
-    font-size: small !important;
+@media only screen and (max-width: 1024px) {
+  * {
+    margin: 1% 3% 3% 1% !important;
+  }
+
+  .large-text {
+    font-size: medium !important;
+  }
+
+  #display-expenses {
+    padding-top: 3% !important;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    height: 24vh !important;
+    width: 91vw !important;
+    font-size: medium !important;
+    gap: 2% !important;
+  }
+
+  #expenses {
+    font-size: x-large !important;
+  }
+
+  #balance {
+    font-size: x-large !important;
   }
 
   #grid-main {
     display: grid !important;
-    grid-template-columns: 1fr !important;  
+    grid-template-columns: 1fr !important;
     height: 98vh;
     width: 98vw !important;
     justify-content: center;
+  }
+
+  #add-expense-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100% !important;
+    width: 100% !important;
+  }
+
+  .fa-trash-can {
+    font-size: x-large !important;
+  }
+
+  .fa-plus {
+    width: 70px !important; 
+    height: 70px !important; 
+    border-radius: 30% !important; 
+    font-size: small !important; 
+  }
+}
+
+@media only screen and (max-width: 1290px) {
+  * {
+    margin: 1% 3% 3% 1% !important;
+  }
+
+  .large-text {
+    font-size: medium !important;
+  }
+
+  #display-expenses {
+    padding-top: 3% !important;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    height: 24vh !important;
+    width: 91vw !important;
+    font-size: medium !important;
+    gap: 2% !important;
+  }
+
+  #expenses {
+    font-size: x-large !important;
+  }
+
+  #balance {
+    font-size: x-large !important;
+  }
+
+  #grid-main {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    height: 98vh;
+    width: 98vw !important;
+    justify-content: center;
+  }
+
+  #add-expense-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100% !important;
+    width: 100% !important;
+  }
+
+  .fa-trash-can {
+    font-size: x-large !important;
+  }
+
+  .fa-plus {
+    width: 80px !important; 
+    height: 80px !important; 
+    border-radius: 20% !important; 
+    font-size: small !important; 
+  }
+}
+
+@media only screen and (min-width: 1291px) {
+  * {
+    margin: 1% 3% 3% 1% !important;
+  }
+
+  .large-text {
+    font-size: medium !important;
+  }
+
+  #display-expenses {
+    padding-top: 3% !important;
+  }
+
+  .fa-plus {
+    width: 90px !important; 
+    height: 90px !important; 
+    border-radius: 5% !important; 
+    font-size: small !important;
   }
 }
