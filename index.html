@@ -27,24 +27,25 @@
         <div class="side-unit">
           <form class="input-containers">
             <label for="budget"><strong>Budget</strong></label>
-            <input
-              id="budget"
-              type="number"
-              placeholder="..."
-              required
-            />
+            <input id="budget" type="number" placeholder="..." required />
           </form>
         </div>
 
         <div class="side-unit">
-          <form class="input-containers" onsubmit="addExpense(event)">
+          <form class="input-containers">
             <label id="bill"><strong>Bill</strong></label>
-            <input type="text" id="bill" placeholder="..." required maxlength="17" />
+            <input
+              type="text"
+              id="bill"
+              placeholder="..."
+              required
+              maxlength="17"
+            />
             <label for="amount"><strong>Amount</strong></label>
             <input type="number" id="amount" placeholder="...." required />
-            <button id="add-expense-btn">
+            <div id="add-expense-btn">
               <i class="fa-solid fa-plus"></i>
-            </button>
+            </div>
           </form>
         </div>
       </div>

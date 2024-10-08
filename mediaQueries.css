@@ -34,12 +34,11 @@
     justify-content: center;
   }
   #add-expense-btn {
-    border: 1px solid dodgerblue;
-    border-radius: 45% !important;
-    height: 25% !important;
-    width: 13% !important;
-    background-color: dodgerblue;
-    box-shadow: 0px 2px 4px black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100% !important;
+    width: 100% !important;
   }
 
   .fa-trash-can {
@@ -88,12 +87,11 @@
     justify-content: center;
   }
   #add-expense-btn {
-    border: 1px solid dodgerblue;
-    border-radius: 45% !important;
-    height: 25% !important;
-    width: 13% !important;
-    background-color: dodgerblue;
-    box-shadow: 0px 2px 4px black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100% !important;
+    width: 100% !important;
   }
 
   .fa-trash-can {
@@ -144,12 +142,11 @@
     justify-content: center;
   }
   #add-expense-btn {
-    border: 1px solid dodgerblue;
-    border-radius: 45% !important;
-    height: 25% !important;
-    width: 13% !important;
-    background-color: dodgerblue;
-    box-shadow: 0px 2px 4px black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100% !important;
+    width: 100% !important;
   }
 
   .fa-trash-can {
@@ -200,12 +197,11 @@
     justify-content: center;
   }
   #add-expense-btn {
-    border: 1px solid dodgerblue;
-    border-radius: 45% !important;
-    height: 25% !important;
-    width: 13% !important;
-    background-color: dodgerblue;
-    box-shadow: 0px 2px 4px black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100% !important;
+    width: 100% !important;
   }
 
   .fa-trash-can {
@@ -256,12 +252,11 @@
   }
 
   #add-expense-btn {
-    border: 1px solid dodgerblue;
-    border-radius: 45% !important;
-    height: 25% !important;
-    width: 13% !important;
-    background-color: dodgerblue;
-    box-shadow: 0px 2px 4px black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100% !important;
+    width: 100% !important;
   }
 
   .fa-trash-can {
@@ -312,12 +307,11 @@
     justify-content: center;
   }
   #add-expense-btn {
-    border: 1px solid dodgerblue;
-    border-radius: 45% !important;
-    height: 25% !important;
-    width: 13% !important;
-    background-color: dodgerblue;
-    box-shadow: 0px 2px 4px black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100% !important;
+    width: 100% !important;
   }
 
   .fa-trash-can {

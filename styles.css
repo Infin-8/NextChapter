@@ -126,19 +126,22 @@ input {
   color: white;
   font-size: xx-large;
   background-color: #32cd32;
-}
-#add-expense-btn {
-  border: 1px solid #32cd32;
-  border-radius: 45% !important;
-  height: 15%;
-  width: 15%;
-  background-color: #32cd32;
+  height: 100%;
+  width: 75%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   box-shadow: 0px 2px 4px black;
+  
 }
 
-#add-expense-btn:hover {
-  box-shadow: 0 1px 2px black;
+#add-expense-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25% !important;
+  width: 50% !important;
 }
-.fa-plus:hover {
-  transform: scale(0.8);
-}
+
+
+
