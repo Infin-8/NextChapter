@@ -75,7 +75,7 @@ const addExpense = e => {
     ];
 
     const newBudget = parseFloat(budget) - parseFloat(compose(sanitizeTrolls, sanitize)(amountNode.value));
-    localStorage.setItem('budget', newBudget.toString());
+    localStorage.setItem('budget', newBudget);
     localStorage.setItem('bills', JSON.stringify(expenses));
     setState({
         budget: newBudget,
@@ -100,10 +100,7 @@ document.getElementById('budget').addEventListener('input', e => {
 
     const { bills } = getState(),
         balanceNode = document.getElementById('balance'),
-        budget = parseFloat(compose(sanitizeTrolls, sanitize)(e.target.value)) - parseFloat(compose(mapAmounts, getSum, parseFloat)(bills))
-
-
-    console.log('budget', budget)
+        budget = parseFloat(compose(sanitizeTrolls, sanitize)(e.target.value)) - parseFloat(compose(mapAmounts, getSum, parseFloat)(bills));
 
     setState({ budget });
     balanceNode.innerText = usdFormatter(budget);
@@ -120,8 +117,8 @@ window.onload = function () {
     if (isNaN(budget)) {
         balanceNode.innerText = usdFormatter("")
         balanceNode.style.color = "red";
-        localStorage.setItem("budget", "0")
-        setState({ budget: "0" })
+        localStorage.setItem("budget", 0)
+        setState({ budget: 0 })
     }
 
     if (budget && !isNaN(budget)) {
