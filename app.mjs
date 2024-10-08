@@ -100,7 +100,10 @@ document.getElementById('budget').addEventListener('input', e => {
 
     const { bills } = getState(),
         balanceNode = document.getElementById('balance'),
-        budget = parseFloat(compose(sanitizeTrolls, sanitize)(e.target.value)) - compose(mapAmounts, getSum, parseFloat)(bills);
+        budget = parseFloat(compose(sanitizeTrolls, sanitize)(e.target.value)) - parseFloat(compose(mapAmounts, getSum, parseFloat)(bills))
+
+
+    console.log('budget', budget)
 
     setState({ budget });
     balanceNode.innerText = usdFormatter(budget);
@@ -111,10 +114,17 @@ document.getElementById('budget').addEventListener('input', e => {
 
 window.onload = function () {
     const budget = localStorage.getItem('budget'),
-        bills = localStorage.getItem('bills');
+        bills = localStorage.getItem('bills'),
+        balanceNode = document.getElementById("balance");
 
-    if (budget) {
-        const balanceNode = document.getElementById("balance");
+    if (isNaN(budget)) {
+        balanceNode.innerText = usdFormatter("")
+        balanceNode.style.color = "red";
+        localStorage.setItem("budget", "0")
+        setState({ budget: "0" })
+    }
+
+    if (budget && !isNaN(budget)) {
         balanceNode.innerText = usdFormatter(budget);
         balanceNode.style.color = budget > 0 ? "limegreen" : "red";
         setState({ budget });
