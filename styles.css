@@ -7,7 +7,7 @@
   text-shadow: 0 1px 2px black;
 }
 .expense-text {
-  color: #FF4D4D
+  color: #ff4d4d;
 }
 
 .black-text {
@@ -34,6 +34,8 @@
   justify-content: center;
   align-items: center;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.7);
+  -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.7);
 }
 
 #main-container {
@@ -89,9 +91,7 @@ input {
   box-shadow: 0px 1px 7px black inset;
   background-color: lightgrey;
   border-radius: 5px;
-  
 }
-
 
 .dark-light-bg {
   background-color: lightgrey;
@@ -136,9 +136,9 @@ input {
   box-shadow: 0px 2px 4px black;
 }
 
-#add-expense-btn:hover{
+#add-expense-btn:hover {
   box-shadow: 0 1px 2px black;
 }
-.fa-plus:hover{
-  transform: scale(.8);
+.fa-plus:hover {
+  transform: scale(0.8);
 }
