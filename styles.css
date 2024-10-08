@@ -124,38 +124,15 @@ input {
 
 .fa-plus {
   color: white;
-  -webkit-font-size: xx-large;  /* Safari */
-  -moz-font-size: xx-large;     /* Older Firefox */
-  -ms-font-size: xx-large;      /* Internet Explorer */
-  font-size: xx-large;          /* Standard */
-  
+  font-size: xx-large;
   background-color: #32cd32;
-  
   height: 100%;
   width: 75%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 2px 4px black;
   
-  display: -webkit-box;         /* Old Safari */
-  display: -moz-box;            /* Old Firefox */
-  display: -ms-flexbox;         /* Internet Explorer 10 */
-  display: -webkit-flex;        /* Chrome, Safari 6+ */
-  display: flex;                /* Modern browsers */
-  
-  -webkit-box-align: center;    /* Old Safari */
-  -moz-box-align: center;       /* Old Firefox */
-  -ms-flex-align: center;       /* Internet Explorer 10 */
-  -webkit-align-items: center;  /* Chrome, Safari 6+ */
-  align-items: center;          /* Modern browsers */
-  
-  -webkit-box-pack: center;     /* Old Safari */
-  -moz-box-pack: center;        /* Old Firefox */
-  -ms-flex-pack: center;        /* Internet Explorer 10 */
-  -webkit-justify-content: center;  /* Chrome, Safari 6+ */
-  justify-content: center;          /* Modern browsers */
-  
-  -webkit-box-shadow: 0px 2px 4px black; /* Safari, old Chrome */
-  -moz-box-shadow: 0px 2px 4px black;    /* Older Firefox */
-  box-shadow: 0px 2px 4px black;         /* Standard */
-
   
 }
 
