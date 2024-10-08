@@ -10,8 +10,8 @@
   color: #FF4D4D
 }
 
-.white-text {
-  color: rgb(149, 255, 202) !important;
+.black-text {
+  color: black !important;
 }
 #grid-main {
   display: grid;

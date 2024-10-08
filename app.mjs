@@ -42,8 +42,8 @@ const appendBills = (expenses = []) => {
             deleteBTN = document.createElement("i");
 
         cardContainer.setAttribute("class", "expense-card");
-        title.setAttribute('class', "dark-light-bg large-text white-text");
-        amountNode.setAttribute('class', "dark-light-bg large-text white-text");
+        title.setAttribute('class', "dark-light-bg large-text black-text");
+        amountNode.setAttribute('class', "dark-light-bg large-text black-text");
         title.innerText = titleCase(name);
         amountNode.innerText = usdFormatter(amount);
         deleteBTN.setAttribute("data-id", _id);
