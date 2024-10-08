@@ -42,8 +42,8 @@ const appendBills = (expenses = []) => {
             deleteBTN = document.createElement("i");
 
         cardContainer.setAttribute("class", "expense-card");
-        title.setAttribute('class', "dark-light-bg large-text");
-        amountNode.setAttribute('class', "dark-light-bg large-text");
+        title.setAttribute('class', "dark-light-bg large-text white-text");
+        amountNode.setAttribute('class', "dark-light-bg large-text white-text");
         title.innerText = titleCase(name);
         amountNode.innerText = usdFormatter(amount);
         deleteBTN.setAttribute("data-id", _id);
@@ -89,7 +89,6 @@ const addExpense = e => {
     balanceNode.innerText = usdFormatter(newBudget);
     balanceNode.style.color = newBudget > 0 ? "limegreen" : "red";
     expensesNode.innerText = usdFormatter(compose(mapAmounts, getSum)(expenses));
-    expensesNode.style.color = "white";
     budgetNode.value = "";
     billNode.value = "";
     amountNode.value = "";
@@ -99,11 +98,12 @@ const addExpense = e => {
 document.getElementById('budget').addEventListener('input', e => {
 
     const { bills } = getState(),
+        value = e.target.value,
         balanceNode = document.getElementById('balance'),
-        budget = parseFloat(compose(sanitizeTrolls, sanitize)(e.target.value)) - parseFloat(compose(mapAmounts, getSum, parseFloat)(bills));
+        budget = compose(sanitizeTrolls, sanitize, parseFloat)(value) - compose(mapAmounts, getSum, parseFloat)(bills);
 
-    setState({ budget });
-    balanceNode.innerText = usdFormatter(budget);
+    setState({ budget: !value.length ? -bills : budget });
+    balanceNode.innerText = usdFormatter(!value.length ? -bills : budget);
     balanceNode.style.color = budget > 0 ? "limegreen" : "red";
     localStorage.setItem("budget", budget);
 
@@ -132,7 +132,6 @@ window.onload = function () {
             parsed = Array.from(JSON.parse(bills));
 
         expensesNode.innerText = usdFormatter(compose(mapAmounts, getSum, String)(parsed));
-        expensesNode.style.color = "white";
         setState({
             bills: parsed,
             expenses: compose(mapAmounts, getSum)(parsed)

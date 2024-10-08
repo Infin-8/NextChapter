@@ -2,10 +2,17 @@
   box-sizing: border-box;
   background-color: whitesmoke;
   font-family: Arial, Helvetica, sans-serif;
-  color: rgb(215, 241, 249);
+  color: #353333;
+  font-weight: 100;
   text-shadow: 0 1px 2px black;
 }
+.expense-text {
+  color: #FF4D4D
+}
 
+.white-text {
+  color: rgb(149, 255, 202) !important;
+}
 #grid-main {
   display: grid;
   grid-template-columns: 0.5fr 1fr;
@@ -82,7 +89,9 @@ input {
   box-shadow: 0px 1px 7px black inset;
   background-color: lightgrey;
   border-radius: 5px;
+  
 }
+
 
 .dark-light-bg {
   background-color: lightgrey;
@@ -91,7 +100,6 @@ input {
 .large-text {
   font-size: large;
   font-weight: bold;
-  color: whitesmoke;
   text-shadow: 0 1px 1.5px black;
 }
 
@@ -117,13 +125,20 @@ input {
 .fa-plus {
   color: white;
   font-size: xx-large;
-  background-color: dodgerblue;
+  background-color: #32cd32;
 }
 #add-expense-btn {
-  border: 1px solid dodgerblue;
+  border: 1px solid #32cd32;
   border-radius: 45% !important;
-  height: 55px;
-  width: 55px;
-  background-color: dodgerblue;
+  height: 15%;
+  width: 15%;
+  background-color: #32cd32;
   box-shadow: 0px 2px 4px black;
+}
+
+#add-expense-btn:hover{
+  box-shadow: 0 1px 2px black;
+}
+.fa-plus:hover{
+  transform: scale(.8);
 }
