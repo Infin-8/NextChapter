@@ -45,8 +45,10 @@
   .fa-trash-can {
     font-size: x-large !important;
   }
-
   .fa-plus {
+    -webkit-font-size: small !important;
+    -moz-font-size: small !important;
+    -ms-font-size: small !important;
     font-size: small !important;
   }
 }
@@ -99,6 +101,9 @@
   }
 
   .fa-plus {
+    -webkit-font-size: small !important;
+    -moz-font-size: small !important;
+    -ms-font-size: small !important;
     font-size: small !important;
   }
 }
@@ -152,6 +157,9 @@
   }
 
   .fa-plus {
+    -webkit-font-size: small !important;
+    -moz-font-size: small !important;
+    -ms-font-size: small !important;
     font-size: small !important;
   }
 }
@@ -205,6 +213,9 @@
   }
 
   .fa-plus {
+    -webkit-font-size: small !important;
+    -moz-font-size: small !important;
+    -ms-font-size: small !important;
     font-size: small !important;
   }
 }
@@ -258,6 +269,9 @@
   }
 
   .fa-plus {
+    -webkit-font-size: small !important;
+    -moz-font-size: small !important;
+    -ms-font-size: small !important;
     font-size: small !important;
   }
 }
@@ -311,6 +325,9 @@
   }
 
   .fa-plus {
+    -webkit-font-size: small !important;
+    -moz-font-size: small !important;
+    -ms-font-size: small !important;
     font-size: small !important;
   }
 }
