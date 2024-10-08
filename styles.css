@@ -99,7 +99,7 @@ input {
 
 .large-text {
   font-size: large;
-  font-weight: bold;
+  /* font-weight: bold; */
   text-shadow: 0 1px 1.5px black;
 }
 
