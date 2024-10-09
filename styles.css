@@ -81,6 +81,8 @@ input {
   border-top-right-radius: 7px;
 }
 
+
+
 #display-expenses {
   width: 100%;
   gap: 5%;
@@ -91,6 +93,7 @@ input {
   box-shadow: 0px 1px 7px black inset;
   background-color: lightgrey;
   border-radius: 5px;
+
 }
 
 .dark-light-bg {
@@ -106,12 +109,27 @@ input {
   font-size: x-large;
 }
 
+@keyframes dropin {
+  0% {
+    transform: translateY(-100%) scale(1.5); /* Start off-screen and larger */
+    opacity: 0;
+    /* box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); Initial shadow */
+  }
+  100% {
+    transform: translateY(0) scale(1); /* End in the final position with normal size */
+    opacity: 1;
+    box-shadow: none; /* Remove shadow at the end */
+  }
+}
+
 .expense-card {
   display: grid;
   grid-template-columns: repeat(2, 1fr) 0.1fr;
   justify-content: space-around;
   margin: 1% 0 1% 0;
-  background-color: lightgrey;
+  background-color: transparent; /* Remove the background color */
+  animation: dropin 0.5s ease-in-out 1; /* Smooth transition with no bounce */
+  transition: box-shadow 0.5s ease-in-out; /* Smooth transition for shadow */
 }
 
 .fa-trash-can {

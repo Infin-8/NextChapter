@@ -77,6 +77,7 @@ const addExpense = e => {
     const newBudget = parseFloat(budget) - parseFloat(compose(sanitizeTrolls, sanitize)(amountNode.value));
     localStorage.setItem('budget', newBudget);
     localStorage.setItem('bills', JSON.stringify(expenses));
+
     setState({
         budget: newBudget,
         expenses: compose(mapAmounts, getSum)(expenses),
@@ -110,6 +111,7 @@ document.getElementById('budget').addEventListener('input', e => {
 });
 
 window.onload = function () {
+    
     const budget = localStorage.getItem('budget'),
         bills = localStorage.getItem('bills'),
         balanceNode = document.getElementById("balance");
@@ -140,5 +142,5 @@ window.onload = function () {
     }
 };
 window.addExpense = addExpense;
-window.deleteExpense = deleteExpense
+window.deleteExpense = deleteExpense;
 window.appendBills = appendBills;
