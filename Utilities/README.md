@@ -12,7 +12,11 @@ This documentation provides details about the utility functions included in the 
 - [Sanitize Input (`sanitize`)](#sanitize-input-sanitize)
 - [Sanitize Troll Inputs (`sanitizeTrolls`)](#sanitize-troll-inputs-sanitizetrolls)
 
+## Import Statements
+
 First, ensure you import the functions from the `helpers` module:
+
+### Usage
 
 ```js
 import {
