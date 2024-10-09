@@ -13,11 +13,7 @@ const deleteExpense = e => {
     let budget = parseFloat(_budget) + amount,
         expenses = Math.round(_expenses - amount);
 
-    setState({
-        budget,
-        expenses,
-        bills
-    });
+    setState({ budget, expenses, bills });
 
     const balanceNode = document.getElementById("balance");
     balanceNode.innerText = usdFormatter(budget);
@@ -111,7 +107,7 @@ document.getElementById('budget').addEventListener('input', e => {
 });
 
 window.onload = function () {
-    
+
     const budget = localStorage.getItem('budget'),
         bills = localStorage.getItem('bills'),
         balanceNode = document.getElementById("balance");
