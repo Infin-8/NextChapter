@@ -12,12 +12,25 @@ This documentation provides details about the utility functions included in the 
 - [Sanitize Input (`sanitize`)](#sanitize-input-sanitize)
 - [Sanitize Troll Inputs (`sanitizeTrolls`)](#sanitize-troll-inputs-sanitizetrolls)
 
+First, ensure you import the functions from the `helpers` module:
+
+```js
+import {
+  compose,
+  getSum,
+  mapAmounts,
+  usdFormatter,
+  titleCase,
+  sanitize,
+  sanitizeTrolls,
+} from "./Utilities/helpers.mjs";
+```
+
 ## Function Composition `compose()`
 
 The `compose` function allows you to compose multiple functions into one. It takes an arbitrary number of functions (`fns`) as arguments and returns a function that takes an initial value (`initial`). The composed functions are applied from left to right, passing the result of one function as the input to the next.
 
 ### Usage
-
 
 ```js
 export const compose =
