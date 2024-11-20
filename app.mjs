@@ -1,6 +1,8 @@
-import useStore from './Store/state.mjs';
-const { getState, setState, genID } = useStore;
-import { compose, getSum, mapAmounts, usdFormatter, titleCase, sanitize, sanitizeTrolls } from "./Utilities/helpers.mjs";
+import useStore from './Store/store.mjs';
+import actions from './Store/Actions/actions.mjs';
+const { getState, dispatch } = useStore;
+const { setBudget, setExpenses, setBills } = actions
+import { compose, getSum, mapAmounts, usdFormatter, titleCase, sanitize, sanitizeTrolls, getColor, genID } from "./Utilities/helpers.mjs";
 
 const deleteExpense = e => {
     e.preventDefault()
@@ -13,14 +15,17 @@ const deleteExpense = e => {
     let budget = parseFloat(_budget) + amount,
         expenses = Math.round(_expenses - amount);
 
-    setState({ budget, expenses, bills });
-
     const balanceNode = document.getElementById("balance");
     balanceNode.innerText = usdFormatter(budget);
-    balanceNode.style.color = budget > 0 ? "limegreen" : "red";
+    balanceNode.style.color = getColor(budget);
     document.getElementById("expenses").innerText = usdFormatter(expenses);
     localStorage.setItem('bills', JSON.stringify(bills));
     localStorage.setItem("budget", budget);
+    [
+        setBudget(budget),
+        setExpenses(expenses),
+        setBills(bills)
+    ].forEach(action => dispatch(action));
     appendBills(bills);
 };
 
@@ -64,31 +69,29 @@ const addExpense = e => {
     const expenses = [
         ...bills,
         {
-            name: sanitize(billNode.value),
-            amount: parseFloat(compose(sanitizeTrolls, sanitize)(amountNode.value)),
+            name: compose((str) => str.slice(0, 10), sanitize)(billNode.value),
+            amount: compose(sanitizeTrolls, sanitize, parseFloat)(amountNode.value),
             _id
         }
     ];
 
-    const newBudget = parseFloat(budget) - parseFloat(compose(sanitizeTrolls, sanitize)(amountNode.value));
-    localStorage.setItem('budget', newBudget);
-    localStorage.setItem('bills', JSON.stringify(expenses));
-
-    setState({
-        budget: newBudget,
-        expenses: compose(mapAmounts, getSum)(expenses),
-        bills: expenses
-    });
-
-    const balanceNode = document.getElementById("balance"),
+    const newBudget = parseFloat(budget) - compose(sanitizeTrolls, sanitize, parseFloat)(amountNode.value),
+        balanceNode = document.getElementById("balance"),
         expensesNode = document.getElementById("expenses");
 
     balanceNode.innerText = usdFormatter(newBudget);
-    balanceNode.style.color = newBudget > 0 ? "limegreen" : "red";
-    expensesNode.innerText = usdFormatter(compose(mapAmounts, getSum)(expenses));
+    balanceNode.style.color = getColor(newBudget);
+    expensesNode.innerText = compose(mapAmounts, getSum, String, usdFormatter)(expenses);
     budgetNode.value = "";
     billNode.value = "";
     amountNode.value = "";
+    localStorage.setItem('budget', newBudget);
+    localStorage.setItem('bills', JSON.stringify(expenses));
+    [
+        setBudget(newBudget),
+        setExpenses(compose(mapAmounts, getSum)(expenses)),
+        setBills(expenses)
+    ].forEach(action => dispatch(action));
     appendBills(expenses);
 };
 
@@ -97,13 +100,13 @@ document.getElementById('budget').addEventListener('input', e => {
     const { bills } = getState(),
         value = e.target.value,
         balanceNode = document.getElementById('balance'),
-        budget = compose(sanitizeTrolls, sanitize, parseFloat)(value) - compose(mapAmounts, getSum, parseFloat)(bills);
+        budget = compose(sanitizeTrolls, sanitize, parseFloat)(value) - compose(mapAmounts, getSum, parseFloat)(bills),
+        mutable = !value.length ? -bills : budget
 
-    setState({ budget: !value.length ? -bills : budget });
-    balanceNode.innerText = usdFormatter(!value.length ? -bills : budget);
-    balanceNode.style.color = budget > 0 ? "limegreen" : "red";
+    balanceNode.innerText = usdFormatter(mutable);
+    balanceNode.style.color = getColor(budget);
     localStorage.setItem("budget", budget);
-
+    compose(setBudget, dispatch)(mutable);
 });
 
 window.onload = function () {
@@ -116,24 +119,28 @@ window.onload = function () {
         balanceNode.innerText = usdFormatter("")
         balanceNode.style.color = "red";
         localStorage.setItem("budget", 0)
-        setState({ budget: 0 })
+        compose(setBudget, dispatch)(0);
     }
 
-    if (budget && !isNaN(budget)) {
+    if (Number(budget)) {
         balanceNode.innerText = usdFormatter(budget);
-        balanceNode.style.color = budget > 0 ? "limegreen" : "red";
-        setState({ budget });
+        balanceNode.style.color = getColor(budget);
+        compose(setBudget, dispatch)(budget);
     }
 
     if (bills) {
-        const expensesNode = document.getElementById("expenses"),
-            parsed = Array.from(JSON.parse(bills));
-
-        expensesNode.innerText = usdFormatter(compose(mapAmounts, getSum, String)(parsed));
-        setState({
-            bills: parsed,
-            expenses: compose(mapAmounts, getSum)(parsed)
-        });
+        const parsed = compose(JSON.parse, Array.from)(bills)
+        document.getElementById("expenses")
+            .innerText = compose(
+                mapAmounts,
+                getSum,
+                String,
+                usdFormatter
+            )(parsed);
+        [
+            setBills(parsed),
+            setExpenses(compose(mapAmounts, getSum)(parsed)),
+        ].forEach(action => dispatch(action));
         appendBills(parsed);
     }
 };

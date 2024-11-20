@@ -30,4 +30,6 @@ export const sanitize = input => input
 
 export const sanitizeTrolls = input => input.slice(0, 8)
 
+export const genID = () => Math.floor(Date.now() * Math.random());
 
+export const getColor = n => n > 0 ? "limegreen" : "red";

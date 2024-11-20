@@ -1,76 +1,241 @@
-# App State Documentation
-
-This documentation outlines how to manage and modify the application's state using `useStore`, including retrieving the current state and updating it dynamically.
+# State Management Documentation
 
 ## Table of Contents
 
-- [Import Statements](#import-statements)
-- [App State Structure](#app-state-structure)
-- [Retrieving the Current State (`getState`)](#retrieving-the-current-state-getstate)
-- [Updating the State (`setState`)](#updating-the-state-setstate)
+- [1. types.mjs](#1-typesmjs)
+- [2. actions.mjs](#2-actionsmjs)
+- [3. reducer.mjs](#3-reducermjs)
+- [4. initialState.mjs](#4-initialstatemjs)
+- [5. store.mjs](#5-storemjs)
+- [General Workflow Explanation](#general-workflow-explanation)
+- [Example of Full Workflow](#example-of-full-workflow)
 
-## Import Statements
+---
 
-First, ensure you import the state management functions from the `useStore` module and destructure the necessary functions to manage the state:
+## 1. `types.mjs`
+
+This module defines constants representing action types. These constants are used in action creators and the reducer to ensure consistency and avoid hardcoded strings.
+
+### Code:
+
+```javascript
+const types = {
+  SET_BUDGET: "SET_BUDGET",
+  SET_EXPENSES: "SET_EXPENSES",
+  SET_BILLS: "SET_BILLS",
+};
+
+export default types;
+```
+
+### Purpose
+
+    •	Centralize action types: Define the action types that will be used in actions and reducers to manage different parts of the state.
+    •	Avoid typos: Using constants prevents typos that could occur when typing action names multiple times across the codebase.
 
 ### Usage
 
 ```js
-import useStore from "./Store/state.mjs";
-const { getState, setState, genID } = useStore;
+import types from "../Constants/types.mjs";
+
+const { SET_BUDGET } = types;
+
+console.log(SET_BUDGET); // Outputs: 'SET_BUDGET'
 ```
 
-## App State Structure
+## 2. `actions.mjs`
 
-The application’s main state is an object that contains the following key-value pairs:
+This module defines action creator functions, which return action objects to be dispatched. These actions carry the payload needed for updating state.
+
+### Code:
 
 ```js
+import types from "../Constants/types.mjs";
 
-{
-    budget: 0,         // The total budget set by the user
-    expenses: 0,       // The total expenses recorded
-    bills: [],         // An array of bill objects, each representing a specific bill
-    inputs: {},        // Stores user inputs (e.g., form data)
-    edits: {},         // Stores any data related to edits being made to a bill
-    editId: "",        // Stores the ID of the item being edited
-    modal: false       // Controls whether a modal (e.g., for adding/editing bills) is open
-}
+const { SET_BUDGET, SET_EXPENSES, SET_BILLS } = types;
 
+const actions = {
+  setBudget: payload => ({ type: SET_BUDGET, payload }),
+  setExpenses: payload => ({ type: SET_EXPENSES, payload }),
+  setBills: payload => ({ type: SET_BILLS, payload }),
+};
+
+export default actions;
 ```
 
-Breakdown of the State:
+### Purpose
 
-    •	budget: Stores the total budget value.
-    •	expenses: A sum of all expenses entered by the user.
-    •	bills: An array holding bill objects (each representing individual expenses or payments).
-    •	inputs: An object used to store form data entered by the user.
-    •	edits: An object that temporarily holds data for an ongoing edit operation.
-    •	editId: A string representing the ID of the item currently being edited.
-    •	modal: A boolean value indicating if the modal is open or closed (useful for UI management).
-
-## Retrieving the Current State `getState()`
-
-The getState function allows you to retrieve the current state object. It returns the entire application state, which you can read or use as needed.
+    •	Action creators: Functions that return action objects with a specific type and an optional payload. These actions can then be dispatched to update the state.
 
 ### Usage
 
 ```js
-const state = getState();
-console.log(state.budget); // Outputs the current budget
+import actions from "./Actions/actions.mjs";
+
+const budgetAction = actions.setBudget(1000);
+
+console.log(budgetAction);
+// Outputs: { type: 'SET_BUDGET', payload: 1000 }
 ```
 
-## Updating the State `setState()`
+## 3. `reducer.mjs`
 
-The setState function enables you to update specific properties in the application’s state. It takes an object as an argument, where the keys represent the state properties to be updated, and the values represent the new values for those properties.
+The reducer function is responsible for handling actions and updating the state based on the action type and payload. It takes the current state and an action as arguments and returns the new state.
 
-setState ensures that the state is updated immutably by creating a copy of the current state and applying the changes on top.
+### Code:
+
+```js
+import types from "../Constants/types.mjs";
+
+const { SET_BUDGET, SET_EXPENSES, SET_BILLS } = types;
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case SET_BUDGET:
+      return { ...state, budget: action.payload };
+    case SET_EXPENSES:
+      return { ...state, expenses: action.payload };
+    case SET_BILLS:
+      return { ...state, bills: action.payload };
+    default:
+      return state;
+  }
+};
+
+export default reducer;
+```
+
+### Purpose
+
+    •	Manage state changes: The reducer function listens for dispatched actions and updates the state based on the type of the action and the payload it carries.
+    •	Immutable state updates: The reducer returns a new state object without mutating the current state.
 
 ### Usage
 
 ```js
-setState({
-  budget: newBudget,
-  expenses: compose(mapAmounts, getSum)(expenses), // Calculates the total expenses
-  bills: expenses, // Updates the bills array
-});
+import reducer from "./Reducers/reducer.mjs";
+
+const initialState = { budget: 0, expenses: 0, bills: [] };
+const action = { type: "SET_BUDGET", payload: 500 };
+
+const newState = reducer(initialState, action);
+
+console.log(newState);
+// Outputs: { budget: 500, expenses: 0, bills: [] }
+```
+
+## 4. `initialState.mjs`
+
+This module provides the initial state for the application. It defines the default values for the state properties before any actions are dispatched.
+
+### Code:
+
+```js
+const initialState = {
+  budget: 0,
+  expenses: 0,
+  bills: [],
+  inputs: {},
+  edits: {},
+  editId: "",
+  modal: false,
+};
+
+export default initialState;
+```
+
+### Purpose
+
+    •	Define the default state: This object contains the initial values for each part of the application’s state, which will be passed to the reducer before any actions occur.
+
+### Usage
+
+```js
+import initialState from "./State/initialState.mjs";
+
+console.log(initialState);
+// Outputs: { budget: 0, expenses: 0, bills: [], inputs: {}, edits: {}, editId: "", modal: false }
+```
+
+## 5. `store.mjs`
+
+This module creates a custom store that holds the application state, and provides getState and dispatch functions. Instead of using React’s useState, you’re managing state with a custom implementation using a reducer.
+
+### Code:
+
+```js
+import reducer from "./Reducers/reducer.mjs";
+import initial_State from "./State/initialState.mjs";
+
+export default (function () {
+  let _state = initial_State;
+
+  const getState = () => JSON.parse(JSON.stringify(_state)); // Get a deep clone of the state
+
+  const dispatch = (action) => {
+    _state = reducer(_state, action); // Update the state using the reducer
+  };
+
+  return { getState, dispatch };
+})();
+```
+
+### Purpose
+
+    •	Custom store: This function returns an object with getState and dispatch methods to manage the application state.
+    •	getState: Returns the current state.
+    •	dispatch: Accepts an action and updates the state using the reducer.
+    •	Internal state management: Keeps the state private and exposes only necessary methods for accessing and updating it.
+
+### Usage
+
+```js
+import store from "./Store/store.mjs";
+import actions from "./Actions/actions.mjs";
+
+console.log(store.getState());
+// Outputs: initial state
+
+store.dispatch(actions.setBudget(2000));
+
+console.log(store.getState());
+// Outputs: updated state with budget set to 2000
+```
+
+# General Workflow Explanation:
+
+    1.	Initial State:
+    •	The state starts as initialState, which is defined in initialState.mjs.
+    2.	Actions:
+    •	When you want to update the state, you create an action using one of the action creators in actions.mjs.
+    3.	Dispatch:
+    •	The action is passed to the dispatch function in store.mjs. dispatch calls the reducer to determine how the state should change based on the action.
+    4.	Reducer:
+    •	The reducer.mjs function takes the current state and the action, processes it, and returns a new state.
+    5.	State Update:
+    •	The dispatch function in the store updates the private _state variable with the new state returned by the reducer. You can retrieve the updated state by calling getState.
+
+# Example Of Full Workflow
+
+```js
+import store from "./Store/store.mjs";
+import actions from "./Actions/actions.mjs";
+
+// Check initial state
+console.log(store.getState());
+// Outputs: { budget: 0, expenses: 0, bills: [], inputs: {}, edits: {}, editId: "", modal: false }
+
+// Dispatch an action to set the budget
+store.dispatch(actions.setBudget(3000));
+
+// Check updated state
+console.log(store.getState());
+// Outputs: { budget: 3000, expenses: 0, bills: [], inputs: {}, edits: {}, editId: "", modal: false }
+
+// Dispatch another action to add an expense
+store.dispatch(actions.setExpenses(500));
+
+// Check updated state
+console.log(store.getState());
+// Outputs: { budget: 3000, expenses: 500, bills: [], inputs: {}, edits: {}, editId: "", modal: false }
 ```
