@@ -1,4 +1,3 @@
-// custom javaScript data store
 
 # State Management Documentation
 
