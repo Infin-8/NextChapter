@@ -1,3 +1,5 @@
+// custom javaScript data store
+
 # State Management Documentation
 
 ## Table of Contents
