@@ -20,7 +20,7 @@ const clearBudget = e => {
         setBudget(budget),
         setExpenses(expenses),
     ].forEach(action => dispatch(action));
-    appendBills(bills);
+    appendBills(_bills);
 }
 
 const deleteExpense = e => {
