@@ -4,6 +4,25 @@ const { getState, dispatch } = useStore;
 const { setBudget, setExpenses, setBills } = actions
 import { compose, getSum, mapAmounts, usdFormatter, titleCase, sanitize, sanitizeTrolls, getColor, genID } from "./Utilities/helpers.mjs";
 
+const clearBudget = e => {
+    e.preventDefault()
+    let budget = 0,
+        expenses = 0;
+
+    const balanceNode = document.getElementById("balance");
+    balanceNode.innerText = usdFormatter(budget);
+    balanceNode.style.color = getColor(budget);
+    document.getElementById("expenses").innerText = usdFormatter(expenses);
+    localStorage.setItem('bills', JSON.stringify(bills));
+    localStorage.setItem("budget", budget);
+    [
+        setBudget(budget),
+        setExpenses(expenses),
+        setBills(bills)
+    ].forEach(action => dispatch(action));
+    appendBills(bills);
+}
+
 const deleteExpense = e => {
     e.preventDefault()
     const { bills: _bills, expenses: _expenses, budget: _budget } = getState(),
@@ -147,3 +166,4 @@ window.onload = function () {
 window.addExpense = addExpense;
 window.deleteExpense = deleteExpense;
 window.appendBills = appendBills;
+window.clearBudget = clearBudget; 
