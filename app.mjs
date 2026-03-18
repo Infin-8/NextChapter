@@ -14,7 +14,7 @@ const clearBudget = e => {
     balanceNode.style.color = getColor(budget);
     document.getElementById("expenses").innerText = usdFormatter(expenses);
     localStorage.setItem('bills', JSON.stringify(bills));
-    localStorage.setItem("budget", budget);
+    localStorage.setItem("budget", JSON.stringify(budget));
     [
         setBudget(budget),
         setExpenses(expenses),
