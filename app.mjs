@@ -86,7 +86,7 @@ const addExpense = e => {
         _id = genID();
 
     if (billNode.value === "") return
-    if (amountNode.value === 0) return 
+    if (amountNode.value === "" || amountNode.value === 0) return 
     
     const expenses = [
         ...bills,
