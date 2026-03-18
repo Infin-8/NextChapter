@@ -6,10 +6,7 @@ import { compose, getSum, mapAmounts, usdFormatter, titleCase, sanitize, sanitiz
 
 const clearBudget = e => {
     e.preventDefault()
-    const { bills, expenses: _expenses, budget: _budget } = getState()
-    
-    let budget = 0,
-        expenses = 0;
+    const { bills, expenses } = getState(), budget = 0;
 
     const balanceNode = document.getElementById("balance");
     balanceNode.innerText = usdFormatter(budget);
@@ -19,6 +16,7 @@ const clearBudget = e => {
     [
         setBudget(budget),
         setExpenses(expenses),
+        setBills(bills)
     ].forEach(action => dispatch(action));
     appendBills(bills);
 }
