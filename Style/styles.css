@@ -10,6 +10,7 @@
 #clear-btn {
   color: #ff0000;
   border: 1px solid #ff0000;
+  font-weight: 100;
 }
 
 .expense-text {
