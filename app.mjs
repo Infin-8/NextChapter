@@ -6,6 +6,8 @@ import { compose, getSum, mapAmounts, usdFormatter, titleCase, sanitize, sanitiz
 
 const clearBudget = e => {
     e.preventDefault()
+    const { bills: _bills, expenses: _expenses, budget: _budget } = getState()
+    
     let budget = 0,
         expenses = 0;
 
