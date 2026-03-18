@@ -54,7 +54,7 @@
   }
 }
 
-@media only screen and (max-width: 480px) {
+/* @media only screen and (max-width: 480px) {
   * {
     margin: 1% 3% 3% 1% !important;
   }
@@ -163,7 +163,7 @@
     border-radius: 50% !important; 
     font-size: x-large !important; 
   }
-}
+} */
 
 @media only screen and (max-width: 1024px) {
   * {
