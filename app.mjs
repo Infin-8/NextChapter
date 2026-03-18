@@ -85,6 +85,9 @@ const addExpense = e => {
         { budget, bills } = getState(),
         _id = genID();
 
+    if (billNode.value === "") return
+    if (amountNode.value === 0) return 
+    
     const expenses = [
         ...bills,
         {
